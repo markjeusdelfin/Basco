@@ -144,8 +144,11 @@
       </div>
     </div>
   </section>
-<footer class="border-t py-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 text-sm text-gray-600 text-center">© <span id="year"></span> Basco IT Solutions</div>
+ <!-- Footer -->
+  <footer class="border-t py-6 bg-gray-50 mt-16">
+    <div class="max-w-6xl mx-auto px-4 text-sm text-gray-600 text-center">
+      © <span id="year"></span> Basco
+    </div>
   </footer>
 
   <!-- Chatbot -->
@@ -164,7 +167,7 @@
  /* -----------------------------
         Basco IT Hardcoded Chatbot
     ----------------------------- */
-
+ document.getElementById('year').textContent = new Date().getFullYear();
   const chatToggle = document.getElementById("chatToggle");
   const chatPanel = document.getElementById("chatPanel");
   const chatClose = document.getElementById("chatClose");
