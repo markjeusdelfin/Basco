@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basco </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root{--bg:#ffffff;--text:#0b0b0b;--muted:#4b5563;--accent:#000000}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;margin:0}
+    header{background:transparent}
+    .nav-btn{cursor:pointer}
+    .mobile-menu{display:none}
+    @media (max-width: 860px){.mobile-menu{display:block}}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Chat bubble */
+    .chat-toggle{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:999px;background:#000;color:#fff;display:grid;place-items:center;z-index:60;cursor:pointer}
+    .chat-panel{position:fixed;right:20px;bottom:96px;width:360px;max-width:94vw;background:#fff;border-radius:12px;box-shadow:0 12px 36px rgba(2,6,23,.16);overflow:hidden;z-index:61;display:none}
+    .chat-panel.show{display:flex;flex-direction:column}
+    .chat-messages{height:320px;overflow:auto;padding:12px;background:#f9fafb}
+    .chat-input{display:flex;padding:10px;border-top:1px solid #eee}
+    .chat-message.user{display:flex;justify-content:flex-end}
+    .chat-message.bot{display:flex;justify-content:flex-start}
+    .bubble{padding:10px 12px;border-radius:12px;max-width:78%}
+    .bubble.user{background:#000;color:#fff}
+    .bubble.bot{background:#f1f5f9;color:#0b0b0b}
+  </style>
+</head>
+<body class="antialiased">
+
+ <header class="sticky top-0 backdrop-blur-sm z-40 border-b border-gray-100 bg-white/90">
+  <div class="max-w-6xl mx-auto flex items-center justify-between py-4 px-4">
+    
+   <div class="flex items-center gap-3">
+  <img src="assets/basco.png" 
+       alt="Basco Logo" 
+       class="w-20 h-20 object-contain">
+
+  <div>
+    <div class="text-2xl font-extrabold flex items-center">
+      Basco<span class="text-gray-600 ml-1"></span>
+    </div>
+    <div class="text-sm text-gray-500">Driven by Passion, Defined by Solutions
+</div>
+  </div>
+</div>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="index.html" class="text-sm text-gray-700 hover:text-black  font-semibold" >Home</a>
+        <a href="services.html" class="text-sm text-gray-700 hover:text-black">Services</a>
+        <a href="portfolio.html" class="text-sm text-gray-700 hover:text-black ">Portfolio</a>
+        <a href="company.html" class="text-sm text-gray-700 hover:text-black">Company</a>
+        <a href="career.html" class="text-sm text-gray-700 hover:text-black">Careers</a>
+     <a href="awards.html" class="text-sm text-gray-700 hover:text-black ">Awards</a>
+       <a href="contact.html" class="text-sm text-gray-700 hover:text-black ">Contacts</a> 
+
+
+
+      </div>
+
+      </nav>
+    
+    </nav>
+
+    <button id="hamburger" class="md:hidden p-2 rounded-md border border-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu bg-white border-t border-gray-100 shadow-sm md:hidden" style="display:none">
+    <div class="max-w-6xl mx-auto py-4 flex flex-col gap-3 px-4">
+       <a href="index.html" class="text-sm text-gray-700">Home</a>
+        <a href="services.html" class="text-sm text-gray-700">Services</a>
+        <a href="portfolio.html" class="text-sm text-gray-700">Portfolio</a>
+        <a href="company.html" class="text-sm text-gray-700">Company</a>
+        <a href="career.html" class="text-sm text-gray-700">Careers</a>
+        <a href="awards.html" class="text-sm text-gray-700">Awards</a>
+         
+        <a href="contact.html" class="text-sm text-gray-700">Contacts</a>
+       
+      </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+  <main>
+   <section id="home" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+  <video id="heroVideo" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover cursor-pointer">
+    <source src="assets/575507082_25725143443755465_3287052897360779450_n.mp4" type="video/mp4">
+  </video>
+
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <div class="relative z-10 px-4">
+    <h1 class="text-5xl font-extrabold mb-4">Innovating <span class="font-normal">Tomorrow</span>, Today.</h1>
+    <p class="text-gray-200 max-w-2xl mx-auto mb-6">
+      Basco is your partner for custom software development, cloud solutions, and managed support. 
+      We build reliable systems that scale.
+    </p>
+    <div class="flex justify-center gap-3">
+      <a href="LOGIN.HTML" class="px-6 py-3 rounded-full text-sm bg-white text-black hover:bg-gray-200 transition">Get Started</a>
+      <a href="contact.html" class="px-6 py-3 rounded-full text-sm bg-white text-black hover:bg-gray-200 transition">Contact Us</a>
+      <button id="openModal" class="px-6 py-3 rounded-full text-sm bg-gray-700 hover:bg-gray-600 transition">Watch Video</button>
+    </div>
+  </div>
+
+  <div id="videoModal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
+    <span id="closeModal" class="absolute top-6 right-8 text-4xl text-white cursor-pointer">&times;</span>
+    <video id="modalVideo" controls class="max-w-4xl w-11/12 rounded-lg">
+      <source src="assets/575507082_25725143443755465_3287052897360779450_n.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+
+    
+
+    <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-12">
+
+  
+
+<!-- EVENTS SECTION -->
+<section id="projects_and_attend-event"  class="mb-16 reveal">
+  <h2 class="text-2xl font-bold mb-10 text-center"> Projects and Attend-Event</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <!-- Event 1 -->
+    <a href="portfolio.html" target="_blank" class="rounded-lg overflow-hidden border hover:shadow-lg transition bg-white reveal block">
+      <img src="assets/devfest.jpg" alt="DevFest Baguio" class="w-full h-50 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Dev-Fest Baguio</h3>
+      </div>
+    </a>
+
+    <!-- Event 2 -->
+    <a href="portfolio.html" target="_blank" class="rounded-lg overflow-hidden border hover:shadow-lg transition bg-white reveal block">
+      <img src="assets/extended-IO.jpg" alt="Extended-IO Baguio" class="w-full h-50 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Extended-IO Baguio</h3>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects_and_attend-event" class="mb-16 reveal">
+   
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <!-- Project 1 -->
+    <a href="portfolio.html" target="_blank" class="rounded-lg overflow-hidden border hover:shadow-lg transition bg-white reveal block">
+      <img src="assets/2.png" alt="Lift Up" class="w-full h-50 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">LiftUp</h3>
+      </div>
+    </a>
+
+    <!-- Project 2 -->
+    <a href="portfolio.html" target="_blank" class="rounded-lg overflow-hidden border hover:shadow-lg transition bg-white reveal block">
+      <img src="assets/ivan_prj.jpg" alt="ThresHold" class="w-full h-50 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">ThresHold</h3>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+    
+  </main>
+
+   
+
+
+  <section id="clients" class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-16 reveal">
+    <h2 class="text-2xl font-bold mb-6 text-center">Clients</h2>
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-6 items-center">
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/acme.png" alt="ACME" class="h-20 object-contain">
+      </div>
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/nexus.png" alt="Nexus Bank" class="h-20 object-contain">
+      </div>
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/pharma.png" alt="Sentinel Pharma" class="h-20 object-contain">
+      </div>
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/cargomax.png" alt="CargoMax" class="h-20 object-contain">
+      </div>
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/apex.png" alt="Apex Retail" class="h-20 object-contain">
+      </div>
+      <div class="p-4 border rounded flex justify-center items-center">
+        <img src="assets/govtect.webp" alt="CityGovTech" class="h-20 object-contain">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Include SwiperJS CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
+<section id="testimonials" class="bg-gray-50 py-16">
+  <div class="max-w-6xl mx-auto px-4 reveal">
+    <h2 class="text-2xl font-bold mb-10 text-center">Testimonials</h2>
+
+    <!-- Swiper -->
+    <div class="swiper testimonial-swiper relative">
+      <div class="swiper-wrapper">
+
+        <!-- Testimonial 1 -->
+        <div class="swiper-slide bg-white border rounded-lg shadow-md p-6 flex space-x-6">
+          <img src="faces/albert.jpg" alt="Albert Peter" class="w-32 h-32  object-cover flex-shrink-0">
+          <div class="flex-1">
+            <div class="font-semibold text-lg">Albert Peter</div>
+            <div class="text-gray-500 text-sm mb-2">CTO, New York, USA</div>
+            <p class="text-gray-700">"Basco delivered excellent results — scalable & reliable. Their team took the time to understand our business needs and implemented a solution that not only met our expectations but exceeded them. We noticed immediate improvements in our workflow and efficiency, and their support was always available whenever we needed guidance."</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="swiper-slide bg-white border rounded-lg shadow-md p-6 flex space-x-6">
+          <img src="faces/juan.jpg" alt="Juan Dela Cruz" class="w-32 h-32  object-cover flex-shrink-0">
+          <div class="flex-1">
+            <div class="font-semibold text-lg">Juan Dela Cruz</div>
+            <div class="text-gray-500 text-sm mb-2">CEO, Manila, Philippines</div>
+            <p class="text-gray-700">"Their cloud team reduced our costs and improved uptime significantly. Basco’s experts evaluated our infrastructure and provided recommendations that optimized our operations. The project was delivered on time, and their guidance helped our team adopt best practices that continue to save us time and resources."</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="swiper-slide bg-white border rounded-lg shadow-md p-6 flex space-x-6">
+          <img src="faces/emily.webp" alt="Emily Stone" class="w-32 h-32  object-cover flex-shrink-0">
+          <div class="flex-1">
+            <div class="font-semibold text-lg">Emily Stone</div>
+            <div class="text-gray-500 text-sm mb-2">Marketing Head, London, UK</div>
+            <p class="text-gray-700">"Highly professional team with fast response times. We were impressed by Basco’s attention to detail and their ability to quickly adapt to our evolving project requirements. Their expertise in cloud solutions and IT strategy allowed us to achieve milestones we previously thought were unattainable in such a short period."</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="swiper-slide bg-white border rounded-lg shadow-md p-6 flex space-x-6">
+          <img src="faces/michael.jpeg" alt="Michael Tan" class="w-32 h-32  object-cover flex-shrink-0">
+          <div class="flex-1">
+            <div class="font-semibold text-lg">Michael Tan</div>
+            <div class="text-gray-500 text-sm mb-2">Operations Manager, Singapore</div>
+            <p class="text-gray-700">"The Basco platform improved our workflow efficiency dramatically. From seamless project management to optimized cloud integration, every part of the solution was carefully designed to address our pain points. Their team guided us through the implementation phase and ensured we were fully trained to maximize the benefits of the platform."</p>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="swiper-slide bg-white border rounded-lg shadow-md p-6 flex space-x-6">
+          <img src="faces/sophia.jpg" alt="Sophia Lee" class="w-32 h-32  object-cover flex-shrink-0">
+          <div class="flex-1">
+            <div class="font-semibold text-lg">Sophia Lee</div>
+            <div class="text-gray-500 text-sm mb-2">Product Manager, Sydney, Australia</div>
+            <p class="text-gray-700">"Excellent support and truly innovative solutions. Working with Basco has been a transformative experience for our organization. They consistently offered creative ideas that enhanced our projects and provided ongoing support that ensured everything ran smoothly. We highly recommend them to any company looking to scale their operations efficiently."</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows -->
+        <div class="swiper-button-next text-gray-700"></div>
+      <div class="swiper-button-prev text-gray-700"></div>
+    </div>
+    
+  </div>
+
+</section>
+
+<!-- Include SwiperJS JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.testimonial-swiper', {
+    slidesPerView: 1, // only one rectangular testimonial at a time
+    spaceBetween: 40,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      1024: { slidesPerView: 1 }, // keep one slide for all screen sizes for rectangle effect
+    },
+  });
+</script>
+
+
+
+   
+</div>
+
+    </div>
+  </div>
+</section>
+
+    <section id="careers" class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-16 reveal">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Join the Basco IT Team</h2>
+        <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">
+          We're looking for passionate, talented individuals to help us build the next generation of digital solutions. We offer competitive compensation, flexible work, and a commitment to professional growth.
+        </p>
+
+        <div class="space-y-4">
+          <div class="p-5 border rounded-xl bg-gray-50 hover:bg-white transition flex justify-between items-center">
+            <div>
+              <h3 class="font-semibold text-xl text-black">Senior Cloud Architect</h3>
+              <p class="text-gray-600 text-sm">Design and oversee scalable cloud infrastructure on AWS/Azure.</p>
+              <p class="text-blue-600 text-xs mt-1">Full-Time | Remote/Hybrid | Senior Level</p>
+            </div>
+            <a href="career.html#cloud" class="px-4 py-2 border border-black text-sm rounded-full hover:bg-black hover:text-white transition">Apply Now</a>
+          </div>
+
+          <div class="p-5 border rounded-xl bg-gray-50 hover:bg-white transition flex justify-between items-center">
+            <div>
+              <h3 class="font-semibold text-xl text-black">Full Stack Developer (React/Node.js)</h3>
+              <p class="text-gray-600 text-sm">Develop and maintain high-performance web applications.</p>
+              <p class="text-blue-600 text-xs mt-1">Full-Time | Hybrid | Mid/Senior Level</p>
+            </div>
+            <a href="career.html#fullstack" class="px-4 py-2 border border-black text-sm rounded-full hover:bg-black hover:text-white transition">Apply Now</a>
+          </div>
+          
+          <div class="p-5 border rounded-xl bg-gray-50 hover:bg-white transition flex justify-between items-center">
+            <div>
+              <h3 class="font-semibold text-xl text-black">Cybersecurity Analyst</h3>
+              <p class="text-gray-600 text-sm">Monitor systems and respond to security incidents.</p>
+              <p class="text-blue-600 text-xs mt-1">Full-Time | On-Site | Junior/Mid Level</p>
+            </div>
+            <a href="career.html#cyber" class="px-4 py-2 border border-black text-sm rounded-full hover:bg-black hover:text-white transition">Apply Now</a>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-8">
+           <a href="career.html" class="px-6 py-3 rounded-full text-sm bg-black text-white hover:bg-gray-800 transition">View All Openings</a>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="events" class="bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 py-16 reveal">
+    <h2 class="text-2xl font-bold mb-6">Events</h2>
+
+    <input id="eventSearch" class="w-full p-3 border rounded mb-8 focus:outline-none focus:ring-2 focus:ring-black" placeholder="Search events..." />
+
+    <div id="eventsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="p-6 border rounded-2xl bg-white hover:shadow-lg transition transform hover:-translate-y-1">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-semibold text-lg">Cloud Workshop</h3>
+          <span class="text-sm bg-black text-white px-2 py-1 rounded-full">Dec 2025</span>
+        </div>
+        <p class="text-gray-600">Hands-on cloud computing workshop covering deployment, DevOps, and best practices.</p>
+      </div>
+
+      <div class="p-6 border rounded-2xl bg-white hover:shadow-lg transition transform hover:-translate-y-1">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-semibold text-lg">Cyber Defense Workshop</h3>
+          <span class="text-sm bg-black text-white px-2 py-1 rounded-full">Oct 2025</span>
+        </div>
+        <p class="text-gray-600">Learn practical cybersecurity techniques, penetration testing, and defense strategies.</p>
+      </div>
+
+      <div class="p-6 border rounded-2xl bg-white hover:shadow-lg transition transform hover:-translate-y-1">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-semibold text-lg">Frontend Summit</h3>
+          <span class="text-sm bg-black text-white px-2 py-1 rounded-full">Dec 2025</span>
+        </div>
+        <p class="text-gray-600">A summit for frontend developers with workshops on React, Tailwind, and modern UI trends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  
+
+  // Event listeners
+  monthlyBtn.addEventListener('click', () => {
+    updatePrices('monthly');
+    monthlyBtn.classList.add('bg-white', 'text-gray-800');
+    monthlyBtn.classList.remove('bg-gray-200');
+    yearlyBtn.classList.remove('bg-white', 'text-gray-800');
+    yearlyBtn.classList.add('bg-gray-200');
+  });
+
+  yearlyBtn.addEventListener('click', () => {
+    updatePrices('yearly');
+    yearlyBtn.classList.add('bg-white', 'text-gray-800');
+    yearlyBtn.classList.remove('bg-gray-200');
+    monthlyBtn.classList.remove('bg-white', 'text-gray-800');
+    monthlyBtn.classList.add('bg-gray-200');
+  });
+
+  // Set default to Monthly on page load
+  updatePrices('monthly');
+  monthlyBtn.classList.add('bg-white', 'text-gray-800');
+  monthlyBtn.classList.remove('bg-gray-200');
+
+// Default
+setPricing("monthly");
+// Simple search filter
+const searchInput = document.getElementById('eventSearch');
+const eventsList = document.getElementById('eventsList');
+searchInput.addEventListener('input', () => {
+  const filter = searchInput.value.toLowerCase();
+  eventsList.querySelectorAll('div').forEach(eventCard => {
+    const text = eventCard.textContent.toLowerCase();
+    eventCard.style.display = text.includes(filter) ? 'block' : 'none';
+  });
+});
+</script>
+
+
+
+  </main>
+
+  <footer class="border-t py-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    
+    <div class="flex gap-4 flex-wrap text-sm">
+      <a href="#home" class="hover:text-black transition">Home</a>
+      <a href="#projects_and_attend-event" class="hover:text-black transition">Projects</a>
+      <a href="#clients" class="hover:text-black transition">Clients</a>
+      <a href="#testimonials" class="hover:text-black transition">Testimonials</a>
+      <!-- <a href="#pricing" class="hover:text-black transition">Pricing</a> -->
+      <a href="#careers" class="hover:text-black transition">Careers</a>
+      <a href="#events" class="hover:text-black transition">Events</a>
+      
+    </div>
+    
+    <div class="text-sm text-gray-500">© <span id="year"></span> Basco | Email: info@bascoit.com</div>
+  </div>
+</footer>
+
+  <div class="chat-toggle" id="chatToggle">💬</div>
+  <div class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div style="background:#111;color:#fff;padding:12px;font-weight:600">Basco Assistant<div style="float:right;cursor:pointer" id="chatClose">✕</div></div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-message bot"><div class="bubble bot">Hello! I'm Basco's assistant. Ask about services, events, or contact info.</div></div>
+    </div>
+    <div class="chat-input">
+      <input id="chatBox" placeholder="Type a message..." class="flex-1 border rounded-l px-3 py-2" />
+      <button id="chatSend" class="bg-black text-white px-4 rounded-r">Send</button>
+    </div>
+  </div>
+
+  <script>
+  // Update footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Initialize lucide icons
+  if (window.lucide) lucide.createIcons();
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.onclick = () =>
+    (mobileMenu.style.display =
+      mobileMenu.style.display === 'block' ? 'none' : 'block');
+  mobileMenu.querySelectorAll('a').forEach(
+    (a) => (a.onclick = () => (mobileMenu.style.display = 'none'))
+  );
+
+  // Reveal elements on scroll
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Search filter (for events)
+  const eventSearch = document.getElementById('eventSearch');
+  if (eventSearch) {
+    eventSearch.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('#eventsList > div').forEach((item) => {
+        item.style.display = item.textContent.toLowerCase().includes(q)
+          ? 'block'
+          : 'none';
+      });
+    });
+  }
+
+  // Video modal logic
+  const heroVideo = document.getElementById('heroVideo');
+  const modal = document.getElementById('videoModal');
+  const openModal = document.getElementById('openModal');
+  const closeModal = document.getElementById('closeModal');
+  const modalVideo = document.getElementById('modalVideo');
+
+  // Toggle play/pause on hero video click
+  if (heroVideo) {
+    heroVideo.addEventListener('click', () => {
+      if (heroVideo.paused) heroVideo.play();
+      else heroVideo.pause();
+    });
+  }
+
+  // Open modal
+  if (openModal && modal && modalVideo) {
+    openModal.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modalVideo.currentTime = 0;
+      modalVideo.play();
+    });
+  }
+
+  // Close modal
+  if (closeModal && modal && modalVideo) {
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modalVideo.pause();
+    });
+  }
+
+  // Close modal when clicking background
+  if (modal && modalVideo) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        modalVideo.pause();
+      }
+    });
+  }
+  /* -----------------------------
+      Basco IT Hardcoded Chatbot
+   ----------------------------- */
+
+const chatToggle = document.getElementById("chatToggle");
+const chatPanel = document.getElementById("chatPanel");
+const chatClose = document.getElementById("chatClose");
+
+const chatMessages = document.getElementById("chatMessages");
+const chatBox = document.getElementById("chatBox");
+const chatSend = document.getElementById("chatSend");
+
+// Open / Close
+chatToggle.onclick = () => chatPanel.classList.add("show");
+chatClose.onclick = () => chatPanel.classList.remove("show");
+
+// Initial greeting
+appendMessage("bot", "Hello! I'm Basco Assistant. How can I help you today?");
+
+// Hardcoded replies
+function getBotReply(message) {
+  const text = message.toLowerCase();
+
+  // HERO / ABOUT / GENERAL
+  if (text.includes("what is basco") || text.includes("about")) {
+    return "Basco IT Solutions provides reliable, secure, and scalable systems for businesses. We focus on custom software, cloud, infrastructure, and cybersecurity.";
+  }
+
+  if (text.includes("service") || text.includes("offer")) {
+    return "We offer Custom Software Development, Cloud & DevOps Solutions, Cybersecurity & Data Protection, and IT Infrastructure services.";
+  }
+
+  if (text.includes("contact")) {
+    return "You can contact us through our website's contact form or email us at support@bascoit.com.";
+  }
+
+  if (text.includes("location") || text.includes("where")) {
+    return "Basco IT Solutions operates digitally and supports clients nationwide. Physical office details are provided upon request.";
+  }
+
+  if (text.includes("price") || text.includes("cost") || text.includes("quote")) {
+    return "Project pricing varies based on scope. We can provide a free estimate — just tell me what system or service you need.";
+  }
+
+  if (text.includes("custom system") || text.includes("software")) {
+    return "Yes, we build custom software tailored to your business — fast, secure, and scalable.";
+  }
+
+  if (text.includes("cloud") || text.includes("devops")) {
+    return "We implement cloud migrations, CI/CD pipelines, and automated infrastructure for companies of all sizes.";
+  }
+
+  if (text.includes("cyber") || text.includes("security")) {
+    return "We provide cybersecurity audits, data protection, and system hardening for your business.";
+  }
+
+  if (text.includes("infra") || text.includes("infrastructure")) {
+    return "We help design and build reliable IT infrastructure including networking, servers, and support systems.";
+  }
+
+  if (text.includes("career") || text.includes("job")) {
+    return "Current career openings are posted on our Careers page. You may also submit your resume for future consideration.";
+  }
+
+  // FALLBACK (default)
+  return "Thank you for your message! A Basco representative will assist you shortly. For now, feel free to ask about our services, pricing, or company information.";
+}
+
+// Append message bubble
+function appendMessage(sender, text) {
+  const div = document.createElement("div");
+  div.className = "chat-message " + (sender === "user" ? "user" : "bot");
+  div.innerHTML = `<div class="bubble ${sender}">${text}</div>`;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Main Chat Function
+function sendMessage() {
+  const userMessage = chatBox.value.trim();
+  if (!userMessage) return;
+
+  appendMessage("user", userMessage);
+  chatBox.value = "";
+
+  // loading state
+  const loading = document.createElement("div");
+  loading.className = "chat-message bot";
+  loading.innerHTML = `<div class="bubble bot">...</div>`;
+  chatMessages.appendChild(loading);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  setTimeout(() => {
+    loading.remove();
+    const reply = getBotReply(userMessage);
+    appendMessage("bot", reply);
+  }, 400); // simulate typing
+}
+
+// Send events
+chatSend.onclick = sendMessage;
+chatBox.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
+ 
+</script>
+
+</body>
+</html>

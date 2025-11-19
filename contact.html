@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basco - Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root{--bg:#ffffff;--text:#0b0b0b;--muted:#4b5563;--accent:#000000}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;margin:0}
+    header{background:transparent}
+    .nav-btn{cursor:pointer}
+    .mobile-menu{display:none}
+    @media (max-width: 860px){.mobile-menu{display:block}}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Chat bubble */
+    .chat-toggle{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:999px;background:#000;color:#fff;display:grid;place-items:center;z-index:60;cursor:pointer}
+    .chat-panel{position:fixed;right:20px;bottom:96px;width:360px;max-width:94vw;background:#fff;border-radius:12px;box-shadow:0 12px 36px rgba(2,6,23,.16);overflow:hidden;z-index:61;display:none}
+    .chat-panel.show{display:flex;flex-direction:column}
+    .chat-messages{height:320px;overflow:auto;padding:12px;background:#f9fafb}
+    .chat-input{display:flex;padding:10px;border-top:1px solid #eee}
+    .chat-message.user{display:flex;justify-content:flex-end}
+    .chat-message.bot{display:flex;justify-content:flex-start}
+    .bubble{padding:10px 12px;border-radius:12px;max-width:78%}
+    .bubble.user{background:#000;color:#fff}
+    .bubble.bot{background:#f1f5f9;color:#0b0b0b}
+  </style>
+</head>
+<body class="antialiased">
+
+ <!-- Header / Nav -->
+ <header class="sticky top-0 backdrop-blur-sm z-40 border-b border-gray-100 bg-white/90">
+  <div class="max-w-6xl mx-auto flex items-center justify-between py-4 px-4">
+    
+   <div class="flex items-center gap-3">
+  <img src="assets/basco.png" 
+       alt="Basco Logo" 
+       class="w-20 h-20 object-contain">
+
+  <div>
+    <div class="text-2xl font-extrabold flex items-center">
+      Basco<span class="text-gray-600 ml-1"></span>
+    </div>
+    <div class="text-sm text-gray-500">Driven by Passion, Defined by Solutions
+</div>
+  </div>
+</div>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="index.html" class="text-sm text-gray-700 hover:text-black  " >Home</a>
+      <a href="services.html" class="text-sm text-gray-700 hover:text-black">Services</a>
+      <a href="portfolio.html" class="text-sm text-gray-700 hover:text-black ">Portfolio</a>
+      <a href="company.html" class="text-sm text-gray-700 hover:text-black">Company</a>
+      <a href="career.html" class="text-sm text-gray-700 hover:text-black">Careers</a>
+      <a href="awards.html" class="text-sm text-gray-700 hover:text-black">Awards</a>
+      <a href="career.html" class="text-sm text-gray-700 hover:text-black font-semibold">Contacts</a>
+      
+    </nav>
+
+    <button id="hamburger" class="md:hidden p-2 rounded-md border border-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu bg-white border-t border-gray-100 shadow-sm md:hidden" style="display:none">
+    <div class="max-w-6xl mx-auto py-4 flex flex-col gap-3 px-4">
+      <a href="index.html" class="text-sm text-gray-700">Home</a>
+        <a href="services.html" class="text-sm text-gray-700">Services</a>
+        <a href="portfolio.html" class="text-sm text-gray-700">Portfolio</a>
+        <a href="company.html" class="text-sm text-gray-700">Company</a>
+        <a href="career.html" class="text-sm text-gray-700">Careers</a>
+        <a href="awards.html" class="text-sm text-gray-700">Awards</a>
+         
+        <a href="contact.html" class="text-sm text-gray-700">Contacts</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-16 reveal">
+  <h2 class="text-3xl font-bold mb-6 text-center">Contact Us</h2>
+  <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+    We'd love to hear from you! Fill out the form below or reach us through the provided contact info.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- Contact Form -->
+    <form onsubmit="event.preventDefault(); alert('Message sent (demo)'); this.reset();" class="space-y-5">
+      <input required class="w-full p-4 border rounded-lg text-lg" placeholder="Your Name" />
+      <input required type="email" class="w-full p-4 border rounded-lg text-lg" placeholder="Your Email" />
+      <textarea required class="w-full p-4 border rounded-lg text-lg" rows="6" placeholder="Your Message"></textarea>
+      <button class="w-full px-6 py-3 bg-black text-white text-lg rounded-lg hover:bg-gray-800 transition">
+        Send Message
+      </button>
+    </form>
+
+    <!-- Office Info & Map -->
+    <div class="flex flex-col gap-6">
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Office</h3>
+        <p class="text-gray-600 text-lg">Makati City, Metro Manila, Philippines</p>
+        <p class="text-gray-600 text-lg">Email: hello@bascoit.com</p>
+      </div>
+
+      <div class="border rounded-lg overflow-hidden h-[500px]">
+        <iframe
+          width="100%"
+          height="100%"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.56673620249!2d121.02137427590486!3d14.56388498593738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90ff932d523%3A0xa237bb2acd972d4!2sMakati%20City%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1700000000000">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="border-t py-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="text-sm text-gray-600">© <span id="year"></span> Basco</div>
+    <div class="text-sm text-gray-500">Email: info@bascoit.com</div>
+  </div>
+</footer>
+
+<!-- Chat Assistant -->
+<div class="chat-toggle" id="chatToggle">💬</div>
+<div class="chat-panel" id="chatPanel" aria-hidden="true">
+  <div style="background:#111;color:#fff;padding:12px;font-weight:600">Basco Assistant<div style="float:right;cursor:pointer" id="chatClose">✕</div></div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-message bot"><div class="bubble bot">Hello! I'm Basco's assistant. Ask about services, events, or contact info.</div></div>
+  </div>
+  <div class="chat-input">
+    <input id="chatBox" placeholder="Type a message..." class="flex-1 border rounded-l px-3 py-2" />
+    <button id="chatSend" class="bg-black text-white px-4 rounded-r">Send</button>
+  </div>
+</div>
+
+<script>
+  // Update footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Initialize lucide icons
+  if (window.lucide) lucide.createIcons();
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.onclick = () =>
+    (mobileMenu.style.display =
+      mobileMenu.style.display === 'block' ? 'none' : 'block');
+  mobileMenu.querySelectorAll('a').forEach(
+    (a) => (a.onclick = () => (mobileMenu.style.display = 'none'))
+  );
+
+  // Reveal elements on scroll
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  /* -----------------------------
+        Basco IT Hardcoded Chatbot
+    ----------------------------- */
+
+  const chatToggle = document.getElementById("chatToggle");
+  const chatPanel = document.getElementById("chatPanel");
+  const chatClose = document.getElementById("chatClose");
+
+  const chatMessages = document.getElementById("chatMessages");
+  const chatBox = document.getElementById("chatBox");
+  const chatSend = document.getElementById("chatSend");
+
+  // Open / Close
+  chatToggle.onclick = () => chatPanel.classList.add("show");
+  chatClose.onclick = () => chatPanel.classList.remove("show");
+
+  // Initial greeting
+  appendMessage("bot", "Hello! I'm Basco Assistant. How can I help you today?");
+
+  // Hardcoded replies
+  function getBotReply(message) {
+    const text = message.toLowerCase();
+
+    // HERO / ABOUT / GENERAL
+    if (text.includes("what is basco") || text.includes("about")) {
+      return "Basco IT Solutions provides reliable, secure, and scalable systems for businesses. We focus on custom software, cloud, infrastructure, and cybersecurity.";
+    }
+
+    if (text.includes("service") || text.includes("offer")) {
+      return "We offer Custom Software Development, Cloud & DevOps Solutions, Cybersecurity & Data Protection, and IT Infrastructure services.";
+    }
+
+    if (text.includes("contact")) {
+      return "You can contact us through our website's contact form or email us at support@bascoit.com.";
+    }
+
+    if (text.includes("location") || text.includes("where")) {
+      return "Basco IT Solutions operates digitally and supports clients nationwide. Physical office details are provided upon request.";
+    }
+
+    if (text.includes("price") || text.includes("cost") || text.includes("quote")) {
+      return "Project pricing varies based on scope. We can provide a free estimate — just tell me what system or service you need.";
+    }
+
+    if (text.includes("custom system") || text.includes("software")) {
+      return "Yes, we build custom software tailored to your business — fast, secure, and scalable.";
+    }
+
+    if (text.includes("cloud") || text.includes("devops")) {
+      return "We implement cloud migrations, CI/CD pipelines, and automated infrastructure for companies of all sizes.";
+    }
+
+    if (text.includes("cyber") || text.includes("security")) {
+      return "We provide cybersecurity audits, data protection, and system hardening for your business.";
+    }
+
+    if (text.includes("infra") || text.includes("infrastructure")) {
+      return "We help design and build reliable IT infrastructure including networking, servers, and support systems.";
+    }
+
+    if (text.includes("career") || text.includes("job")) {
+      return "Current career openings are posted on our Careers page. You may also submit your resume for future consideration.";
+    }
+
+    // FALLBACK (default)
+    return "Thank you for your message! A Basco representative will assist you shortly. For now, feel free to ask about our services, pricing, or company information.";
+  }
+
+  // Append message bubble
+  function appendMessage(sender, text) {
+    const div = document.createElement("div");
+    div.className = "chat-message " + (sender === "user" ? "user" : "bot");
+    div.innerHTML = `<div class="bubble ${sender}">${text}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Main Chat Function
+  function sendMessage() {
+    const userMessage = chatBox.value.trim();
+    if (!userMessage) return;
+
+    appendMessage("user", userMessage);
+    chatBox.value = "";
+
+    // loading state
+    const loading = document.createElement("div");
+    loading.className = "chat-message bot";
+    loading.innerHTML = `<div class="bubble bot">...</div>`;
+    chatMessages.appendChild(loading);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    setTimeout(() => {
+      loading.remove();
+      const reply = getBotReply(userMessage);
+      appendMessage("bot", reply);
+    }, 400); // simulate typing
+  }
+
+  // Send events
+  chatSend.onclick = sendMessage;
+  chatBox.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+</script>
+
+</body>
+</html>

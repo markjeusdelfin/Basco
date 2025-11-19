@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BASCO - Awards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0b0b0b;
+      --muted: #4b5563;
+      --accent: #000000;
+    }
+    .chat-toggle{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:999px;background:#000;color:#fff;display:grid;place-items:center;z-index:60;cursor:pointer}
+    .chat-panel{position:fixed;right:20px;bottom:96px;width:360px;max-width:94vw;background:#fff;border-radius:12px;box-shadow:0 12px 36px rgba(2,6,23,.16);overflow:hidden;z-index:61;display:none}
+    .chat-panel.show{display:flex;flex-direction:column}
+    .chat-messages{height:320px;overflow:auto;padding:12px;background:#f9fafb}
+    .chat-input{display:flex;padding:10px;border-top:1px solid #eee}
+    .chat-message.user{display:flex;justify-content:flex-end}
+    .chat-message.bot{display:flex;justify-content:flex-start}
+    .bubble{padding:10px 12px;border-radius:12px;max-width:78%}
+    .bubble.user{background:#000;color:#fff}
+    .bubble.bot{background:#f1f5f9;color:#0b0b0b}
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    h1, h2, h3 {
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      color: var(--text);
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 backdrop-blur-sm z-40 border-b border-gray-100 bg-white/90">
+    <div class="max-w-6xl mx-auto flex items-center justify-between py-4 px-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/basco.png" alt="Basco Logo" class="w-20 h-20 object-contain">
+        <div>
+          <div class="text-2xl font-extrabold flex items-center">
+            Basco<span class="ml-1"></span>
+          </div>
+          <div class="text-sm text-muted">Driven by Passion, Defined by Solutions</div>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="index.html" class="text-sm hover:text-black">Home</a>
+        <a href="services.html" class="text-sm hover:text-black">Services</a>
+        <a href="portfolio.html" class="text-sm hover:text-black">Portfolio</a>
+        <a href="company.html" class="text-sm hover:text-black">Company</a>
+        <a href="career.html" class="text-sm hover:text-black">Careers</a>
+        <a href="awards.html" class="text-sm font-semibold hover:text-black">Awards</a>
+        <a href="contact.html" class="text-sm hover:text-black">Contacts</a>
+      </nav>
+
+      <button id="hamburger" class="md:hidden p-2 rounded-md border border-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu bg-white border-t border-gray-100 shadow-sm md:hidden" style="display:none">
+      <div class="max-w-6xl mx-auto py-4 flex flex-col gap-3 px-4">
+        <a href="index.html" class="text-sm">Home</a>
+        <a href="services.html" class="text-sm">Services</a>
+        <a href="portfolio.html" class="text-sm">Portfolio</a>
+        <a href="company.html" class="text-sm">Company</a>
+        <a href="career.html" class="text-sm">Careers</a>
+        <a href="awards.html" class="text-sm">Awards</a>
+        <a href="contact.html" class="text-sm">Contacts</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="awards" class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-16 reveal">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+      Our Awards & Recognition
+    </h2>
+    <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">
+      Celebrating milestones, achievements, and recognitions that reflect our commitment to innovation and excellence.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Awards Grid -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+  
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+       <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition flex flex-col items-center text-center">
+  <div class="text-4xl mb-2">🏆</div>
+  <h3 class="text-xl font-semibold mb-2">Best IT Solutions Provider 2023</h3>
+  <p class="text-gray-600 text-sm">Awarded by Tech Innovators Association for excellence in IT solutions and custom software development.</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition flex flex-col items-center text-center">
+  <div class="text-4xl mb-2">☁️</div>
+  <h3 class="text-xl font-semibold mb-2">Innovation in Cloud Services 2022</h3>
+  <p class="text-gray-600 text-sm">Recognized for delivering cutting-edge cloud and DevOps solutions to businesses globally.</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition flex flex-col items-center text-center">
+  <div class="text-4xl mb-2">🛡️</div>
+  <h3 class="text-xl font-semibold mb-2">Top Cybersecurity Innovator 2021</h3>
+  <p class="text-gray-600 text-sm">Honored for outstanding contributions in cybersecurity and data protection services.</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition flex flex-col items-center text-center">
+  <div class="text-4xl mb-2">☁️⚡</div>
+  <h3 class="text-xl font-semibold mb-2">Best Cloud Migration Partner 2023</h3>
+  <p class="text-gray-600 text-sm">Recognized for seamless cloud adoption and infrastructure optimization projects.</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition flex flex-col items-center text-center">
+  <div class="text-4xl mb-2">💻</div>
+  <h3 class="text-xl font-semibold mb-2">Excellence in Custom Software 2022</h3>
+  <p class="text-gray-600 text-sm">Awarded for delivering high-quality, scalable software solutions tailored to clients’ needs.</p>
+</div>
+
+        <!-- More award cards... repeat as needed -->
+      </div>
+    </div>
+  </section>
+<footer class="border-t py-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 text-sm text-gray-600 text-center">© <span id="year"></span> Basco IT Solutions</div>
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chat-toggle" id="chatToggle">💬</div>
+  <div class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div style="background:#111;color:#fff;padding:12px;font-weight:600">Basco Assistant<div style="float:right;cursor:pointer" id="chatClose">✕</div></div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-message bot"><div class="bubble bot">Hello! I'm Basco's assistant. Ask about services, events, or contact info.</div></div>
+    </div>
+    <div class="chat-input">
+      <input id="chatBox" placeholder="Type a message..." class="flex-1 border rounded-l px-3 py-2" />
+      <button id="chatSend" class="bg-black text-white px-4 rounded-r">Send</button>
+    </div>
+  </div>
+<script>
+ /* -----------------------------
+        Basco IT Hardcoded Chatbot
+    ----------------------------- */
+
+  const chatToggle = document.getElementById("chatToggle");
+  const chatPanel = document.getElementById("chatPanel");
+  const chatClose = document.getElementById("chatClose");
+
+  const chatMessages = document.getElementById("chatMessages");
+  const chatBox = document.getElementById("chatBox");
+  const chatSend = document.getElementById("chatSend");
+
+  // Open / Close
+  chatToggle.onclick = () => chatPanel.classList.add("show");
+  chatClose.onclick = () => chatPanel.classList.remove("show");
+
+  // Initial greeting
+  appendMessage("bot", "Hello! I'm Basco Assistant. How can I help you today?");
+
+  // Hardcoded replies
+  function getBotReply(message) {
+    const text = message.toLowerCase();
+
+    // HERO / ABOUT / GENERAL
+    if (text.includes("what is basco") || text.includes("about")) {
+      return "Basco IT Solutions provides reliable, secure, and scalable systems for businesses. We focus on custom software, cloud, infrastructure, and cybersecurity.";
+    }
+
+    if (text.includes("service") || text.includes("offer")) {
+      return "We offer Custom Software Development, Cloud & DevOps Solutions, Cybersecurity & Data Protection, and IT Infrastructure services.";
+    }
+
+    if (text.includes("contact")) {
+      return "You can contact us through our website's contact form or email us at support@bascoit.com.";
+    }
+
+    if (text.includes("location") || text.includes("where")) {
+      return "Basco IT Solutions operates digitally and supports clients nationwide. Physical office details are provided upon request.";
+    }
+
+    if (text.includes("price") || text.includes("cost") || text.includes("quote")) {
+      return "Project pricing varies based on scope. We can provide a free estimate — just tell me what system or service you need.";
+    }
+
+    if (text.includes("custom system") || text.includes("software")) {
+      return "Yes, we build custom software tailored to your business — fast, secure, and scalable.";
+    }
+
+    if (text.includes("cloud") || text.includes("devops")) {
+      return "We implement cloud migrations, CI/CD pipelines, and automated infrastructure for companies of all sizes.";
+    }
+
+    if (text.includes("cyber") || text.includes("security")) {
+      return "We provide cybersecurity audits, data protection, and system hardening for your business.";
+    }
+
+    if (text.includes("infra") || text.includes("infrastructure")) {
+      return "We help design and build reliable IT infrastructure including networking, servers, and support systems.";
+    }
+
+    if (text.includes("career") || text.includes("job")) {
+      return "Current career openings are posted on our Careers page. You may also submit your resume for future consideration.";
+    }
+
+    // FALLBACK (default)
+    return "Thank you for your message! A Basco representative will assist you shortly. For now, feel free to ask about our services, pricing, or company information.";
+  }
+
+  // Append message bubble
+  function appendMessage(sender, text) {
+    const div = document.createElement("div");
+    div.className = "chat-message " + (sender === "user" ? "user" : "bot");
+    div.innerHTML = `<div class="bubble ${sender}">${text}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Main Chat Function
+  function sendMessage() {
+    const userMessage = chatBox.value.trim();
+    if (!userMessage) return;
+
+    appendMessage("user", userMessage);
+    chatBox.value = "";
+
+    // loading state
+    const loading = document.createElement("div");
+    loading.className = "chat-message bot";
+    loading.innerHTML = `<div class="bubble bot">...</div>`;
+    chatMessages.appendChild(loading);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    setTimeout(() => {
+      loading.remove();
+      const reply = getBotReply(userMessage);
+      appendMessage("bot", reply);
+    }, 400); // simulate typing
+  }
+
+  // Send events
+  chatSend.onclick = sendMessage;
+  chatBox.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+</script>
+
+</body>
+</html>
