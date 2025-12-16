@@ -91,21 +91,21 @@
 
   <div class="grid md:grid-cols-2 gap-10">
     <!-- Contact Form -->
-    <form onsubmit="event.preventDefault(); alert('Message sent (demo)'); this.reset();" class="space-y-5">
-      <input required class="w-full p-4 border rounded-lg text-lg" placeholder="Your Name" />
-      <input required type="email" class="w-full p-4 border rounded-lg text-lg" placeholder="Your Email" />
-      <textarea required class="w-full p-4 border rounded-lg text-lg" rows="6" placeholder="Your Message"></textarea>
-      <button class="w-full px-6 py-3 bg-black text-white text-lg rounded-lg hover:bg-gray-800 transition">
-        Send Message
-      </button>
-    </form>
-
+    <form onsubmit="sendMail(event)" class="space-y-5">
+      <input required id="name" class="w-full p-4 border rounded-lg text-lg" placeholder="Your Name" />
+      <input required id="email" type="email" class="w-full p-4 border rounded-lg text-lg" placeholder="Your Email" />
+      <textarea required id="message" class="w-full p-4 border rounded-lg text-lg" rows="6" placeholder="Your Message"></textarea>
+      <button type="submit" class="w-full px-6 py-3 bg-black text-white text-lg rounded-lg hover:bg-gray-800 transition">
+        Send Message
+      </button>
+    </form>
+    
     <!-- Office Info & Map -->
     <div class="flex flex-col gap-6">
       <div>
         <h3 class="font-semibold text-lg mb-2">Office</h3>
         <p class="text-gray-600 text-lg">Makati City, Metro Manila, Philippines</p>
-        <p class="text-gray-600 text-lg">Email: hello@bascoit.com</p>
+        <p class="text-gray-600 text-lg">Email: companybasco722@gmail.com</p>
       </div>
 
       <div class="border rounded-lg overflow-hidden h-[500px]">
@@ -123,13 +123,30 @@
   </div>
 </main>
 
+
 <!-- Footer -->
- <!-- Footer -->
-  <footer class="border-t py-6 bg-gray-50 mt-16">
-    <div class="max-w-6xl mx-auto px-4 text-sm text-gray-600 text-center">
-      © <span id="year"></span> Basco
+ <footer class="border-t py-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    
+    
+
+    <!-- Right side: Email + Social -->
+    <div class="flex items-center gap-4 text-sm text-gray-500">
+      <span>© <span id="year"></span> Basco</span>
+      <span>|</span>
+      <span>Email: companybasco722@gmail.com</span>
+
+      <!-- Facebook Icon -->
+      <a href="https://www.facebook.com/profile.php?id=61584738195613"
+         target="_blank"
+         aria-label="Basco Facebook"
+         class="text-gray-500 hover:text-black transition">
+        <i data-lucide="facebook" class="w-5 h-5"></i>
+      </a>
     </div>
-  </footer>
+
+  </div>
+</footer>
 
 <!-- Chat Assistant -->
 <div class="chat-toggle" id="chatToggle">💬</div>
@@ -145,6 +162,34 @@
 </div>
 
 <script>
+
+  // --- NEW MAILTO FUNCTIONALITY ---
+  function sendMail(event) {
+    event.preventDefault(); // Stop the form from submitting normally
+
+    // Get the values from the form inputs
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Define the recipient and email details
+    const recipient = 'companybasco722@gmail.com'; // CHANGED EMAIL HERE
+    const subject = encodeURIComponent(`Inquiry from ${name} via Basco Website`);
+    
+    // Format the body, replacing newlines with %0A for email body
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    // Construct the mailto link
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    // Open the user's email client
+    window.location.href = mailtoLink;
+    
+    // Optionally clear the form after opening the mail client
+    document.querySelector('form').reset();
+  }
   // Update footer year
   document.getElementById('year').textContent = new Date().getFullYear();
 
